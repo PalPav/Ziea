@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://app/levels/AbstractLevel.gd" type="Script" id=1]
+[ext_resource path="res://app/door/Door.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/level/Exit_4.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/level/Exit_locked.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/level/Exit_1.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/level/Exit_2.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/level/Exit_3.png" type="Texture" id=8]
+[ext_resource path="res://app/levels/Enemies.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 45, 45 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "no_way",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "welcome",
+"speed": 2.0
+} ]
+
+[node name="AbstractLevel" type="Node"]
+script = ExtResource( 1 )
+door_blueprint = ExtResource( 2 )
+
+[node name="Map" type="TileMap" parent="."]
+cell_size = Vector2( 100, 100 )
+format = 1
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Enemies" type="Node" parent="."]
+script = ExtResource( 9 )
+
+[node name="Exit" type="Area2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Detector" type="CollisionShape2D" parent="Exit"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="Animation" type="AnimatedSprite" parent="Exit"]
+frames = SubResource( 2 )
+animation = "no_way"
+playing = true
+[connection signal="body_entered" from="Exit" to="." method="_on_Exit_body_entered"]

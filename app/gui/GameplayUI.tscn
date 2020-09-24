@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://app/gui/GameplayUI.gd" type="Script" id=1]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/fonts/JetBrainsMono.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 1 )
+
+[node name="GameplayUI" type="MarginContainer"]
+anchor_right = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 20.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 75.0
+
+[node name="EnemiesCounter" type="CenterContainer" parent="HBoxContainer"]
+margin_right = 72.0
+margin_bottom = 75.0
+
+[node name="Label" type="Label" parent="HBoxContainer/EnemiesCounter"]
+margin_right = 72.0
+margin_bottom = 75.0
+custom_fonts/font = SubResource( 2 )
+text = "11"
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+margin_left = 76.0
+margin_right = 76.0
+margin_bottom = 75.0
+
+[node name="ShotsCounter" type="CenterContainer" parent="HBoxContainer"]
+margin_left = 80.0
+margin_right = 80.0
+margin_bottom = 75.0

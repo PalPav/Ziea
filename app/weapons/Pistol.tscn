@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://app/weapons/AbstractWeapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://app/weapons/Pistol.gd" type="Script" id=2]
+[ext_resource path="res://assets/sounds/weapons/pistol/shot.wav" type="AudioStream" id=3]
+
+[node name="Pistol" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="LoS" type="RayCast2D" parent="." index="0"]
+enabled = true
+cast_to = Vector2( 500, 0 )
+
+[node name="SFX_Shot" parent="." index="1"]
+stream = ExtResource( 3 )
