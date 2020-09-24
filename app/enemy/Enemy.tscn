@@ -67,7 +67,7 @@ texture = ExtResource( 5 )
 visible = false
 frames = SubResource( 2 )
 animation = "Idle"
-frame = 2
+frame = 3
 playing = true
 
 [node name="PlayerDetectionTimer" type="Timer" parent="."]

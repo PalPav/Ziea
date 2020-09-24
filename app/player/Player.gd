@@ -6,12 +6,18 @@ var rotation_speed = 1.8
 var damage = 10
 var max_health = 10
 var current_health = max_health
-var is_shooting_available = true
-var is_reloading = false
+var is_changing_weapon = false
 var is_alive = true
 
 var velocity = Vector2.ZERO
 var rotation_dir = 0
+
+onready var weapons = $Weapons
+onready var weapon_change_timer = $WeaponChangeTimer
+
+
+func _ready():
+	EventBus.emit_signal("weapon_changed",getCurrnetWeapon().getWeaponState())
 
 func get_input():
 	rotation_dir = 0
@@ -36,9 +42,11 @@ func get_input():
 		velocity += transform.x * cur_speed
 	if Input.is_action_pressed("player_shoot"):
 		self.shoot()
-	if Input.is_action_pressed("player_reload"):
+	if Input.is_action_just_pressed("player_reload"):
 		self.reload()
-	
+	if Input.is_action_just_pressed("player_next_weapon"):
+		changeCurrentWeapon()
+		
 func _physics_process(delta):
 	if !is_alive:
 		return
@@ -48,13 +56,49 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 	
 func shoot():
-	$Weapons/Pistol.shoot()
+	var weapon = getCurrnetWeapon()
+	if (weapon.has_method('shoot')):
+		weapon.shoot()
 	
 func reload():
-	$Weapons/Pistol.reload()
+	var weapon = getCurrnetWeapon()
+	if (weapon.has_method('reload')):
+		weapon.reload()
+	
+func getWeaponState()->Dictionary:
+	var weapon = getCurrnetWeapon()
+	if (weapon.has_method('getWeaponState')):
+		return weapon.getWeaponState()
+	return {
+		"name":"Bare hands",
+		"in_clip": 1,
+		"in_bandolier":1
+	}
 
-func _on_GunTimer_timeout():
-	self.is_shooting_available = true
+func getCurrnetWeapon():
+	return weapons.get_child(0)
+	
+func changeCurrentWeapon():
+	if (is_changing_weapon):
+		return
+
+	var weapons_pool_count = weapons.get_child_count()
+	if (weapons_pool_count == 1):
+		return
+	
+	is_changing_weapon = true
+	
+	var current_weapon = getCurrnetWeapon()
+	current_weapon.is_avaliable = false
+	weapons.move_child(getCurrnetWeapon(), weapons_pool_count - 1)
+	weapon_change_timer.start()
+	
+	
+func onWeaponChangeTimeout():
+	var current_weapon = getCurrnetWeapon()
+	current_weapon.is_avaliable = true
+	is_changing_weapon = false
+	EventBus.emit_signal("weapon_changed",current_weapon.getWeaponState())
 	
 func take_hit(incoming_damage):
 	current_health -= int(incoming_damage)
@@ -79,3 +123,4 @@ func resurect():
 	$Direction.show()
 	$Body.play()
 	current_health = max_health
+

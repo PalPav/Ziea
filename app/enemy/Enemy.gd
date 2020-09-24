@@ -69,12 +69,15 @@ func detect_player():
 	player_detector_ray.queue_free()
 	
 func die():
+	if !self.is_alive:
+		return
+	
+	self.is_alive = false
 	death_sound.play()
 	$Alive.hide()
 	$Dead.show()
 	$Collider.set_deferred("disabled", true)
-	self.is_alive = false
-	$AttackZone.queue_free()
+	$AttackZone/AttackZoneShape.disabled = true
 	# Трупы выше живых для того чтобы не перекрывали их при наложении
 	get_parent().move_child(self, 0)
 	EventBus.emit_signal("enemy_died")

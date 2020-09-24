@@ -25,7 +25,7 @@ func shootLogic():
 
 func reloadLogic():
 	if (bandolier_ammo_amount <= 0):
-		bandolier_ammo_amount = 0
+		bandolier_ammo_amount = 24
 		return false
 	elif (bandolier_ammo_amount >= clip_size):
 		clip_ammo_amount = clip_size

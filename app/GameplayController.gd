@@ -17,6 +17,8 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	EventBus.connect("stage_cleared", self, "onStageCleared")
 	
+	
+	
 	if !next_level:
 		next_level = load("res://app/levels/Level_debug.tscn")
 	loadNextLevel()

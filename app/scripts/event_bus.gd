@@ -13,6 +13,8 @@ signal stage_cleared
 
 # эвенты оружия
 # warning-ignore:unused_signal
-signal shot_fired
+signal shot_fired(weapon_state)
 # warning-ignore:unused_signal
-signal weapon_reloaded
+signal weapon_reloaded(weapon_state)
+# warning-ignore:unused_signal
+signal weapon_changed(weapon_state)

@@ -19,7 +19,7 @@ onready var timer_rof = $Timer_ROF
 
 func onReloadFinish():
 	is_ammo_ready = true
-	EventBus.emit_signal("weapon_reloaded")
+	EventBus.emit_signal("weapon_reloaded", getWeaponState())
 	
 func onRofUnlock():
 	is_rof_lock = false
@@ -35,21 +35,28 @@ func shoot():
 		clip_ammo_amount -= 1
 		is_rof_lock = true
 		self.sfx_shot.play()
-		EventBus.emit_signal("shot_fired")
+		EventBus.emit_signal("shot_fired", getWeaponState())
 		timer_rof.start()
 	
 	
 func reload():
-	is_ammo_ready = false
-	if reloadLogic():
+	
+	if is_ammo_ready && reloadLogic():
+		is_ammo_ready = false
 		sfx_reload.play()
 		timer_reload.start()
 
 # переопределить логику стрельбы
 func shootLogic():
-	print('FUCK!')
 	pass
 
 # переопределить логику перезарядки
 func reloadLogic():
 	pass
+
+func getWeaponState():
+	return {
+		'name':self.name,
+		'in_clip': clip_ammo_amount,
+		'in_bandolier':bandolier_ammo_amount
+	}
