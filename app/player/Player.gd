@@ -1,19 +1,20 @@
 extends KinematicBody2D
 
-var speed = 200
-var strafe_speed = 150
-var rotation_speed = 1.8
-var damage = 10
-var max_health = 10
-var current_health = max_health
+var speed			 = 200
+var strafe_speed	 = 150
+var rotation_speed	 = 1.8
+var damage			 = 10
+var max_health		 = 10
+var current_health	 = max_health
 var is_changing_weapon = false
-var is_alive = true
+var is_alive		 = true
 
 var velocity = Vector2.ZERO
 var rotation_dir = 0
 
-onready var weapons = $Weapons
+onready var weapons 			= $Weapons
 onready var weapon_change_timer = $WeaponChangeTimer
+onready var sfx_weapon_swap 	= $SFX_WeaponSwap
 
 
 func _ready():
@@ -90,14 +91,17 @@ func changeCurrentWeapon():
 	
 	var current_weapon = getCurrnetWeapon()
 	current_weapon.is_avaliable = false
+	current_weapon.hide()
 	weapons.move_child(getCurrnetWeapon(), weapons_pool_count - 1)
 	weapon_change_timer.start()
+	sfx_weapon_swap.play()
 	
 	
 func onWeaponChangeTimeout():
 	var current_weapon = getCurrnetWeapon()
 	current_weapon.is_avaliable = true
 	is_changing_weapon = false
+	current_weapon.show()
 	EventBus.emit_signal("weapon_changed",current_weapon.getWeaponState())
 	
 func take_hit(incoming_damage):

@@ -10,6 +10,8 @@ var damage:int = 10
 var is_ammo_ready = true
 var is_rof_lock = true
 var is_avaliable = false
+var has_empty_clip_sound = true
+var is_empty_clip_sound_available = true
 
 onready var sfx_reload = $SFX_Reload
 onready var sfx_shot = $SFX_Shot
@@ -19,6 +21,7 @@ onready var timer_rof = $Timer_ROF
 
 func onReloadFinish():
 	is_ammo_ready = true
+	is_empty_clip_sound_available = true
 	EventBus.emit_signal("weapon_reloaded", getWeaponState())
 	
 func onRofUnlock():
@@ -27,8 +30,14 @@ func onRofUnlock():
 func canShoot()->bool:
 	return is_avaliable && is_ammo_ready && !is_rof_lock && clip_ammo_amount > 0
 	
+func canPlayEmptyClipReloadSound()->bool:
+	return has_empty_clip_sound && clip_ammo_amount <= 0 && is_empty_clip_sound_available && !is_rof_lock
+	
 func shoot():
 	if !canShoot():
+		if (canPlayEmptyClipReloadSound()):
+			is_empty_clip_sound_available = false
+			sfx_empty_clip.play()
 		return
 		
 	if shootLogic():
@@ -40,8 +49,7 @@ func shoot():
 	
 	
 func reload():
-	
-	if is_ammo_ready && reloadLogic():
+	if is_avaliable && is_ammo_ready && reloadLogic():
 		is_ammo_ready = false
 		sfx_reload.play()
 		timer_reload.start()

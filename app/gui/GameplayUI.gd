@@ -34,6 +34,5 @@ func redrawEnemiesCount():
 	$HBoxContainer/EnemiesCounter/Label.text = str(enemies_count)
 	
 func setWeaponState(weapon:Dictionary):
-	
 	$HBoxContainer/WeaponName/Label.text = str(weapon.name)
 	$HBoxContainer/AmmoCount/Label.text = str(weapon.in_clip, " / ", weapon.in_bandolier)

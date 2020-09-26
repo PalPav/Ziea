@@ -61,10 +61,14 @@ offset = Vector2( 65, -0.5 )
 
 [node name="Weapons" type="Node2D" parent="."]
 
-[node name="Shotgun" parent="Weapons" instance=ExtResource( 8 )]
-
 [node name="Pistol" parent="Weapons" instance=ExtResource( 7 )]
 
+[node name="Shotgun" parent="Weapons" instance=ExtResource( 8 )]
+visible = false
+
 [node name="WeaponChangeTimer" type="Timer" parent="."]
+wait_time = 1.1
 one_shot = true
+
+[node name="SFX_WeaponSwap" type="AudioStreamPlayer" parent="."]
 [connection signal="timeout" from="WeaponChangeTimer" to="." method="onWeaponChangeTimeout"]

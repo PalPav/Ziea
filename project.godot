@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Ziea"
-run/main_scene="res://app/GameplayController.tscn"
+run/main_scene="res://app/gui/MainMenu.tscn"
 boot_splash/image="res://assets/images/splash.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
@@ -35,6 +35,12 @@ config/icon="res://icon.png"
 [autoload]
 
 EventBus="*res://app/scripts/event_bus.gd"
+MainController="*res://app/scripts/MainController.gd"
+
+[display]
+
+window/size/width=1366
+window/size/height=768
 
 [input]
 

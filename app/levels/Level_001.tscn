@@ -198,6 +198,3 @@ position = Vector2( 744.778, 1855.11 )
 
 [node name="Enemy20" parent="Enemies" index="61" instance=ExtResource( 3 )]
 position = Vector2( 647.198, 1951.27 )
-
-[node name="Animation" parent="Exit" index="1"]
-frame = 0

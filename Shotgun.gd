@@ -4,10 +4,11 @@ func _init():
 	clip_size = 2
 	bandolier_size = 20
 	clip_ammo_amount = 2
-	bandolier_ammo_amount = 20
+	bandolier_ammo_amount = 999
 	damage = 6
 	is_ammo_ready = true
 	is_avaliable = true
+	has_empty_clip_sound = false
 
 onready var los = $LoS
 
@@ -30,7 +31,6 @@ func reloadLogic():
 		return false
 		
 	if (bandolier_ammo_amount <= 0):
-		bandolier_ammo_amount = 24
 		return false
 		
 	
