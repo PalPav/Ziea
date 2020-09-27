@@ -48,6 +48,7 @@ shape = SubResource( 1 )
 [node name="Body" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "Idle"
+frame = 1
 playing = true
 
 [node name="Dead" type="Sprite" parent="."]
@@ -55,7 +56,6 @@ playing = true
 [node name="Direction" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "Idle"
-frame = 1
 playing = true
 offset = Vector2( 65, -0.5 )
 

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "AbstractItem",
+"language": "GDScript",
+"path": "res://app/items/AbstractItem.gd"
+}, {
 "base": "Node",
 "class": "AbstractLevel",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://app/weapons/AbstractWeapon.gd"
 } ]
 _global_script_class_icons={
+"AbstractItem": "",
 "AbstractLevel": "",
 "AbstractWeapon": ""
 }
@@ -97,3 +103,4 @@ player_next_weapon={
 
 2d_physics/layer_1="Collisions"
 2d_physics/layer_2="RangeDetector"
+2d_physics/layer_3="Items"

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://app/levels/AbstractLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://app/enemy/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://app/levels/TileSet.tres" type="TileSet" id=3]
 [ext_resource path="res://app/levels/Level_001.tscn" type="PackedScene" id=4]
+[ext_resource path="res://app/items/AbstractItem.tscn" type="PackedScene" id=5]
 
 [node name="Level_debug" instance=ExtResource( 1 )]
 next_level = ExtResource( 4 )
@@ -19,4 +20,16 @@ position = Vector2( 802.529, 301.947 )
 rotation = -3.14159
 
 [node name="Animation" parent="Exit" index="1"]
-frame = 0
+frame = 1
+
+[node name="AbstractItem" parent="." index="3" instance=ExtResource( 5 )]
+position = Vector2( 646.161, 152.548 )
+
+[node name="AbstractItem2" parent="." index="4" instance=ExtResource( 5 )]
+position = Vector2( 747.183, 151.426 )
+
+[node name="AbstractItem3" parent="." index="5" instance=ExtResource( 5 )]
+position = Vector2( 845.96, 146.936 )
+
+[node name="AbstractItem4" parent="." index="6" instance=ExtResource( 5 )]
+position = Vector2( 946.981, 148.058 )

@@ -128,3 +128,5 @@ func resurect():
 	$Body.play()
 	current_health = max_health
 
+func getWeapons():
+	return weapons
