@@ -3,8 +3,8 @@ extends AbstractWeapon
 func _init():
 	clip_size = 2
 	bandolier_size = 20
-	clip_ammo_amount = 2
-	bandolier_ammo_amount = 999
+	clip_ammo_amount = 0
+	bandolier_ammo_amount = 0
 	damage = 6
 	is_ammo_ready = true
 	is_avaliable = true

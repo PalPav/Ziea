@@ -1,11 +1,9 @@
 extends Area2D
 class_name AbstractItem
 
-var weapon_name = "Shotgun"
-var ammo_count = 4
+onready var sfx_pickup = $SFX_PickUp
+onready var pickup_range = $PickUpRange
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
@@ -15,14 +13,14 @@ func _ready():
 #	pass
 
 func onPickupRangeBodyEntered(player):
-	if (player.name != "Player" || !player.has_method("getWeapons")):
+	if !(player is Player):
+		print('DET', player is Player)
 		return
-	var weapon = player.getWeapons().get_node(weapon_name)
-	
-	if !weapon:
-		return
-	
-	weapon.bandolier_ammo_amount += 4
-	EventBus.emit_signal("weapon_changed", player.getCurrnetWeapon().getWeaponState())
-	$PickUpRange.set_deferred("disabled", true)
-	self.hide()
+		
+	if handlePckup(player):
+		sfx_pickup.play()
+		pickup_range.set_deferred("disabled", true)
+		self.hide()
+
+func handlePckup(_player: Player)->bool:
+	return false

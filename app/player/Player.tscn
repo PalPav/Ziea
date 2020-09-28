@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/sprites/player/Palyer_1.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/player/Palyer_2.png" type="Texture" id=5]
 [ext_resource path="res://app/player/Player.gd" type="Script" id=6]
-[ext_resource path="res://app/weapons/Pistol.tscn" type="PackedScene" id=7]
+[ext_resource path="res://app/weapons/Handgun.tscn" type="PackedScene" id=7]
 [ext_resource path="res://app/weapons/Shotgun.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -48,7 +48,6 @@ shape = SubResource( 1 )
 [node name="Body" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "Idle"
-frame = 1
 playing = true
 
 [node name="Dead" type="Sprite" parent="."]
@@ -56,12 +55,13 @@ playing = true
 [node name="Direction" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "Idle"
+frame = 1
 playing = true
 offset = Vector2( 65, -0.5 )
 
 [node name="Weapons" type="Node2D" parent="."]
 
-[node name="Pistol" parent="Weapons" instance=ExtResource( 7 )]
+[node name="Handgun" parent="Weapons" instance=ExtResource( 7 )]
 
 [node name="Shotgun" parent="Weapons" instance=ExtResource( 8 )]
 visible = false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Shotgun.gd" type="Script" id=1]
+[ext_resource path="res://app/weapons/Shotgun.gd" type="Script" id=1]
 [ext_resource path="res://app/weapons/AbstractWeapon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sounds/weapons/shotgun/shot.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sounds/weapons/shotgun/reload.wav" type="AudioStream" id=4]

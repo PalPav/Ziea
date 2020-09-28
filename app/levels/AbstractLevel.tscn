@@ -36,6 +36,8 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Items" type="Node" parent="."]
+
 [node name="Enemies" type="Node" parent="."]
 script = ExtResource( 9 )
 
@@ -51,5 +53,6 @@ shape = SubResource( 1 )
 [node name="Animation" type="AnimatedSprite" parent="Exit"]
 frames = SubResource( 2 )
 animation = "no_way"
+frame = 1
 playing = true
 [connection signal="body_entered" from="Exit" to="." method="_on_Exit_body_entered"]

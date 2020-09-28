@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 var speed			 = 200
 var strafe_speed	 = 150

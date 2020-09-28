@@ -23,11 +23,23 @@ _global_script_classes=[ {
 "class": "AbstractWeapon",
 "language": "GDScript",
 "path": "res://app/weapons/AbstractWeapon.gd"
+}, {
+"base": "AbstractItem",
+"class": "AmmoItem",
+"language": "GDScript",
+"path": "res://app/items/ammo/AmmoItem.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://app/player/Player.gd"
 } ]
 _global_script_class_icons={
 "AbstractItem": "",
 "AbstractLevel": "",
-"AbstractWeapon": ""
+"AbstractWeapon": "",
+"AmmoItem": "",
+"Player": ""
 }
 
 [application]
