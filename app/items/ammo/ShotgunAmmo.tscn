@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://app/items/ammo/AmmoItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://app/items/ammo/ShotgunAmmo.gd" type="Script" id=2]
 [ext_resource path="res://assets/sounds/items/shotgun_ammo.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sprites/items/shotgun_ammo.png" type="Texture" id=4]
 
 [node name="ShotgunAmmo" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource( 4 )
 
 [node name="SFX_PickUp" parent="." index="2"]
 stream = ExtResource( 3 )
