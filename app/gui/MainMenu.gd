@@ -1,5 +1,8 @@
 extends MarginContainer
 
+func _ready():
+	if MainController.isSaveFileExists():
+		enableContinue()
 
 func _on_New_game_pressed():
 	MainController.runNewGame()
@@ -10,4 +13,7 @@ func _on_Exit_pressed():
 
 
 func _on_Continue_pressed():
-	pass # Replace with function body.
+	MainController.continueGame()
+	
+func enableContinue():
+	$HBoxContainer/VBoxContainer/Options/Continue.set_deferred("disabled", false)

@@ -18,19 +18,19 @@ func _ready():
 	EventBus.connect("stage_cleared", self, "onStageCleared")
 	
 	
-	
+	if (MainController.is_loading):
+		MainController.loadGame()
+		return
+		
 	if !next_level:
 		next_level = load("res://app/levels/Level_debug.tscn")
 	loadNextLevel()
-
-
+	
 func onPlayerDeath():
 	$RestartTimer.start()
 
 func _on_RestartTimer_timeout():
-	if level_container.get_child_count():
-		var current_scene = level_container.get_child(0).filename
-		initLevel(load(current_scene))
+	MainController.loadGame()
 		
 func onStageCleared():
 	$TeleportTimer.start()
@@ -41,7 +41,7 @@ func loadNextLevel():
 	initLevel(next_level)
 	
 func initLevel(level_scene:PackedScene):
-	
+	print(self, level_scene)
 	if level_container.get_child_count():
 		level_container.get_child(0).queue_free()
 		yield(get_tree(), "idle_frame")
@@ -61,3 +61,17 @@ func initLevel(level_scene:PackedScene):
 	# Врагам тоже нужно перекур
 	get_tree().call_group("enemies", "set_player", player)
 	player.teleportModeOff()
+
+func saveState(save_data):
+	save_data["gameplay_contoller"] = {
+		"current_level" : getCurrentLevel().get_filename()
+	}
+
+func loadState(save_data):
+	print('gameplay controller load init')
+	var load_level = load(save_data["gameplay_contoller"]["current_level"]);
+	print("Load level", load_level)
+	initLevel(load_level)
+
+func getCurrentLevel():
+	return level_container.get_child(0);

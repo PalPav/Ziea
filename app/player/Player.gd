@@ -4,7 +4,6 @@ class_name Player
 var speed			 = 200
 var strafe_speed	 = 150
 var rotation_speed	 = 1.8
-var damage			 = 10
 var max_health		 = 10
 var current_health	 = max_health
 var is_changing_weapon = false
@@ -127,7 +126,21 @@ func resurect():
 	$Collider.set_deferred("disabled", false)
 	$Direction.show()
 	$Body.play()
-	current_health = max_health
+	if (current_health <= 0):
+		current_health = max_health
 
 func getWeapons():
 	return weapons
+	
+func saveState(save_data: Dictionary):
+	save_data["player"] = {
+		"current_health" : self.current_health
+	}
+
+func loadState(load_data:Dictionary):
+	print('Player load init')
+	current_health = load_data['player']['current_health']
+	yield(get_tree(),"idle_frame")
+	resurect()
+	EventBus.emit_signal("weapon_changed",getCurrnetWeapon().getWeaponState())
+	

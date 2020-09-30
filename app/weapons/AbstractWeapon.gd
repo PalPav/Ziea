@@ -1,6 +1,8 @@
 extends Node2D
 class_name AbstractWeapon
 
+const SAVE_PREFIX = "weapon_"
+
 var clip_size:int = 12
 var bandolier_size:int = 60
 var clip_ammo_amount:int = 12
@@ -62,9 +64,18 @@ func shootLogic():
 func reloadLogic():
 	pass
 
-func getWeaponState():
+func getWeaponState()->Dictionary:
 	return {
 		'name':self.name,
 		'in_clip': clip_ammo_amount,
 		'in_bandolier':bandolier_ammo_amount
 	}
+
+func saveState(save_data: Dictionary):
+	save_data[str(SAVE_PREFIX, name)] = getWeaponState()
+	
+func loadState(load_data: Dictionary):
+	print('W load init')
+	var weapon_save_key = str(SAVE_PREFIX, name)
+	clip_ammo_amount = load_data[weapon_save_key]["in_clip"]
+	bandolier_ammo_amount = load_data[weapon_save_key]["in_bandolier"]

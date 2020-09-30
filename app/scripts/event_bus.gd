@@ -9,7 +9,8 @@ signal enemy_died
 signal player_dead
 # warning-ignore:unused_signal
 signal stage_cleared
-
+# warning-ignore:unused_signal
+signal level_ready
 
 # эвенты оружия
 # warning-ignore:unused_signal

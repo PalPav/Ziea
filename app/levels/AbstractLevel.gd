@@ -26,7 +26,8 @@ func _ready():
 # warning-ignore:return_value_discarded
 	else:
 		activateExit()
-		
+	yield(get_tree(),"idle_frame")
+	EventBus.emit_signal("level_ready")
 func initActiveZones()->void:
 	spawnDoors()
 	

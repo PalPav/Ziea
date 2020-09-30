@@ -6,7 +6,9 @@
 [ext_resource path="res://assets/images/bg.png" type="Texture" id=4]
 [ext_resource path="res://app/GameplayController.gd" type="Script" id=5]
 
-[node name="GameplayController" type="Node"]
+[node name="GameplayController" type="Node" groups=[
+"persist",
+]]
 script = ExtResource( 5 )
 player_blueprint = ExtResource( 1 )
 

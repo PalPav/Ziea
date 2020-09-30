@@ -29,6 +29,7 @@ animations = [ {
 } ]
 
 [node name="Player" type="KinematicBody2D" groups=[
+"persist",
 "players",
 ]]
 script = ExtResource( 6 )
@@ -48,6 +49,7 @@ shape = SubResource( 1 )
 [node name="Body" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "Idle"
+frame = 1
 playing = true
 
 [node name="Dead" type="Sprite" parent="."]
@@ -61,9 +63,13 @@ offset = Vector2( 65, -0.5 )
 
 [node name="Weapons" type="Node2D" parent="."]
 
-[node name="Handgun" parent="Weapons" instance=ExtResource( 7 )]
+[node name="Handgun" parent="Weapons" groups=[
+"persist",
+] instance=ExtResource( 7 )]
 
-[node name="Shotgun" parent="Weapons" instance=ExtResource( 8 )]
+[node name="Shotgun" parent="Weapons" groups=[
+"persist",
+] instance=ExtResource( 8 )]
 visible = false
 
 [node name="WeaponChangeTimer" type="Timer" parent="."]
