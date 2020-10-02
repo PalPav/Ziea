@@ -67,7 +67,6 @@ texture = ExtResource( 5 )
 visible = false
 frames = SubResource( 2 )
 animation = "Idle"
-frame = 3
 playing = true
 
 [node name="PlayerDetectionTimer" type="Timer" parent="."]
@@ -83,6 +82,7 @@ enabled = true
 shape = SubResource( 3 )
 
 [node name="HitEffect" type="Particles2D" parent="."]
+visible = false
 emitting = false
 amount = 10
 one_shot = true

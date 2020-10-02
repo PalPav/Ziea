@@ -59,7 +59,9 @@ func getPlayerSpawnPosition()->Vector2:
 		push_error('Level have no player spawn tile')
 	return(Vector2(0,0))
 func activateExit():
+	yield(get_tree().create_timer(1),"timeout")
 	is_stage_clear = true
+	$SFX_StageClear.play()
 	$Exit/Animation.play("welcome")	
 
 func onEnemyDeath():

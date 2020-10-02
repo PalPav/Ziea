@@ -3,7 +3,7 @@
 [ext_resource path="res://app/items/AbstractItem.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/items/abstract.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30.049, 30.1697 )
 
 [node name="AbstractItem" type="Area2D"]
@@ -18,7 +18,7 @@ __meta__ = {
 texture = ExtResource( 2 )
 
 [node name="PickUpRange" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="SFX_PickUp" type="AudioStreamPlayer" parent="."]
 [connection signal="body_entered" from="." to="." method="onPickupRangeBodyEntered"]

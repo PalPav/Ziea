@@ -17,7 +17,6 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	EventBus.connect("stage_cleared", self, "onStageCleared")
 	
-	
 	if (MainController.is_loading):
 		MainController.loadGame()
 		return
@@ -41,7 +40,6 @@ func loadNextLevel():
 	initLevel(next_level)
 	
 func initLevel(level_scene:PackedScene):
-	print(self, level_scene)
 	if level_container.get_child_count():
 		level_container.get_child(0).queue_free()
 		yield(get_tree(), "idle_frame")
@@ -68,9 +66,7 @@ func saveState(save_data):
 	}
 
 func loadState(save_data):
-	print('gameplay controller load init')
 	var load_level = load(save_data["gameplay_contoller"]["current_level"]);
-	print("Load level", load_level)
 	initLevel(load_level)
 
 func getCurrentLevel():

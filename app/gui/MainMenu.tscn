@@ -41,19 +41,19 @@ margin_top = 4.0
 margin_right = 252.0
 margin_bottom = 216.0
 
-[node name="New game" type="Button" parent="HBoxContainer/VBoxContainer/Options"]
+[node name="Continue" type="Button" parent="HBoxContainer/VBoxContainer/Options"]
 margin_right = 252.0
 margin_bottom = 68.0
 custom_fonts/font = SubResource( 1 )
-text = "New game"
+disabled = true
+text = "Continue"
 
-[node name="Continue" type="Button" parent="HBoxContainer/VBoxContainer/Options"]
+[node name="New game" type="Button" parent="HBoxContainer/VBoxContainer/Options"]
 margin_top = 72.0
 margin_right = 252.0
 margin_bottom = 140.0
 custom_fonts/font = SubResource( 1 )
-disabled = true
-text = "Continue"
+text = "New game"
 
 [node name="Exit" type="Button" parent="HBoxContainer/VBoxContainer/Options"]
 margin_top = 144.0
@@ -75,6 +75,6 @@ margin_bottom = 608.0
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer"]
 margin_top = 304.0
 margin_bottom = 304.0
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Options/New game" to="." method="_on_New_game_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Options/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Options/New game" to="." method="_on_New_game_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Options/Exit" to="." method="_on_Exit_pressed"]

@@ -75,7 +75,6 @@ func saveState(save_data: Dictionary):
 	save_data[str(SAVE_PREFIX, name)] = getWeaponState()
 	
 func loadState(load_data: Dictionary):
-	print('W load init')
 	var weapon_save_key = str(SAVE_PREFIX, name)
 	clip_ammo_amount = load_data[weapon_save_key]["in_clip"]
 	bandolier_ammo_amount = load_data[weapon_save_key]["in_bandolier"]

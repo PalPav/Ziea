@@ -17,6 +17,7 @@ onready var player_detector_ray = $PlayerDetectorRay
 onready var hit_effect = $HitEffect
 
 func _ready():
+	$HitEffect.show()
 	yield(get_tree(), "idle_frame")
 	EventBus.emit_signal("enemy_spawned")
 
@@ -84,5 +85,6 @@ func die():
 	
 func _on_AttackZone_body_entered(body):
 	if body.get_name() == 'Player' && body.has_method('take_hit'):
+		print('ENEMY ATTACK', name)
 		body.take_hit(self.damage)
 		

@@ -14,7 +14,6 @@ func _ready():
 
 func onPickupRangeBodyEntered(player):
 	if !(player is Player):
-		print('DET', player is Player)
 		return
 		
 	if handlePckup(player):

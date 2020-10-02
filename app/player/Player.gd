@@ -106,7 +106,6 @@ func onWeaponChangeTimeout():
 	
 func take_hit(incoming_damage):
 	current_health -= int(incoming_damage)
-	
 	if current_health <= 0:
 		is_alive = false
 		$Collider.set_deferred("disabled", true)
@@ -116,6 +115,9 @@ func take_hit(incoming_damage):
 
 func teleportModeOn():
 	$Camera.smoothing_enabled = false
+	# отключаем коллайдер так как будучи загруженным на новый уровень может подбирать предметы
+	# или быть убитым врагом до того как переместится на точку возрождения
+	$Collider.set_deferred("disabled", false)
 
 func teleportModeOff():
 	$Camera.smoothing_enabled = true
@@ -138,7 +140,6 @@ func saveState(save_data: Dictionary):
 	}
 
 func loadState(load_data:Dictionary):
-	print('Player load init')
 	current_health = load_data['player']['current_health']
 	yield(get_tree(),"idle_frame")
 	resurect()
