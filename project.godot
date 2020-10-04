@@ -55,6 +55,7 @@ config/version="0.0.1"
 
 EventBus="*res://app/scripts/event_bus.gd"
 MainController="*res://app/scripts/MainController.gd"
+EM="*res://app/scripts/EM.gd"
 
 [display]
 

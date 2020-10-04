@@ -8,7 +8,7 @@ const LEVEL_EXIT_TILE_ID = 9
 const TILE_SIZE = 100
 const PLAYERS_GROUP = 'players'
 
-export (PackedScene) var door_blueprint
+onready var door_blueprint = load("res://app/door/Door.tscn")
 export (PackedScene) var next_level
 
 onready var level_map = $Map
@@ -17,8 +17,6 @@ onready var level_exit = $Exit
 var is_stage_clear = false
 
 func _ready():
-	if !door_blueprint:
-		door_blueprint = load("res://app/door/Door.tscn")
 	initActiveZones()
 	if $Enemies.get_child_count() > 0:
 		# warning-ignore:return_value_discarded

@@ -3,15 +3,14 @@ extends Node
 export (PackedScene) onready var player_blueprint
 var next_level:PackedScene = null;
 var current_level:PackedScene = null;
-var player = null
 
 onready var level_container = $LevelContainer
 
 func _ready():
 	yield(get_tree(), "idle_frame")
 	$AmbientAudio.play()
-	player = player_blueprint.instance()
-	add_child(player)
+	EM.setPlayer(player_blueprint.instance())
+	add_child(EM.getPlayer())
 	# warning-ignore:return_value_discarded
 	EventBus.connect("player_dead", self,"onPlayerDeath")
 	# warning-ignore:return_value_discarded
@@ -22,7 +21,7 @@ func _ready():
 		return
 		
 	if !next_level:
-		next_level = load("res://app/levels/Level_debug.tscn")
+		next_level = load("res://app/levels/Level_005.tscn")
 	loadNextLevel()
 	
 func onPlayerDeath():
@@ -51,14 +50,12 @@ func initLevel(level_scene:PackedScene):
 	# и заполнились onready var  
 	level_container.call_deferred("add_child",level)
 	next_level = level.getNextLevel()
-	player.teleportModeOn()
+	EM.getPlayer().teleportModeOn()
 	# Дадим время игроку приготовиться к телепортации
 	yield(get_tree(), "idle_frame")
-	player.set_position(level.getPlayerSpawnPosition())
+	EM.getPlayer().set_position(level.getPlayerSpawnPosition())
 	yield(get_tree(), "idle_frame")
-	# Врагам тоже нужно перекур
-	get_tree().call_group("enemies", "set_player", player)
-	player.teleportModeOff()
+	EM.getPlayer().teleportModeOff()
 
 func saveState(save_data):
 	save_data["gameplay_contoller"] = {

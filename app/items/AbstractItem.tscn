@@ -14,11 +14,23 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Icon" type="Sprite" parent="."]
+[node name="Icon" type="Sprite" parent="." groups=[
+"items",
+"player_ref_related",
+]]
 texture = ExtResource( 2 )
 
 [node name="PickUpRange" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+disabled = true
 
 [node name="SFX_PickUp" type="AudioStreamPlayer" parent="."]
+
+[node name="PlayerDetectionTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="PlayerDetectionRay" type="RayCast2D" parent="."]
+enabled = true
 [connection signal="body_entered" from="." to="." method="onPickupRangeBodyEntered"]
+[connection signal="timeout" from="PlayerDetectionTimer" to="." method="_on_PlayerDetectionTimer_timeout"]

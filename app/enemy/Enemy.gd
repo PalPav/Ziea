@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 var is_alive = true
 var is_player_detected = false
-var player = null
 var velocity = Vector2.ZERO
 
 export var speed = 150
@@ -28,9 +27,6 @@ func take_hit(incoming_damage:int, global_hit_pos:Vector2):
 	hit_effect.position = to_local(global_hit_pos)
 	hit_effect.emitting = true
 	hit_sound.play()
-	
-func set_player(player_ref):
-	player = player_ref
  
 func _physics_process(_delta):
 	chase_player()
@@ -39,17 +35,17 @@ func _on_PlayerDetectionTimer_timeout():
 	detect_player()
 		
 func chase_player():
-	if !is_player_detected || !is_alive || !player:
+	if !is_player_detected || !is_alive || !EM.getPlayer():
 		return
 	# Пока противники максимально тупые )))
-	velocity = position.direction_to(player.position) * speed
+	velocity = position.direction_to(EM.getPlayer().position) * speed
 	velocity = move_and_slide(velocity)
 	
 func detect_player():
-	if is_player_detected || !is_alive || !self.player:
+	if is_player_detected || !is_alive || !EM.getPlayer():
 		return
 
-	var enemy_to_player = player.position - self.position
+	var enemy_to_player = EM.getPlayer().position - self.position
 	
 	if enemy_to_player.length() > detection_radius:
 		return
@@ -63,6 +59,7 @@ func detect_player():
 		return
 		
 	is_player_detected = true
+	$AttackZone/AttackZoneShape.set_deferred("disabled", false)
 	$Alive.set_deferred("visible", true)
 	detect_sound.play()
 	$Collider.set_deferred("disabled", false)
@@ -85,6 +82,5 @@ func die():
 	
 func _on_AttackZone_body_entered(body):
 	if body.get_name() == 'Player' && body.has_method('take_hit'):
-		print('ENEMY ATTACK', name)
 		body.take_hit(self.damage)
 		

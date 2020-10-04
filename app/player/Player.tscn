@@ -49,7 +49,7 @@ shape = SubResource( 1 )
 [node name="Body" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "Idle"
-frame = 1
+frame = 2
 playing = true
 
 [node name="Dead" type="Sprite" parent="."]

@@ -67,6 +67,7 @@ texture = ExtResource( 5 )
 visible = false
 frames = SubResource( 2 )
 animation = "Idle"
+frame = 3
 playing = true
 
 [node name="PlayerDetectionTimer" type="Timer" parent="."]
@@ -80,6 +81,7 @@ enabled = true
 
 [node name="AttackZoneShape" type="CollisionShape2D" parent="AttackZone"]
 shape = SubResource( 3 )
+disabled = true
 
 [node name="HitEffect" type="Particles2D" parent="."]
 visible = false
