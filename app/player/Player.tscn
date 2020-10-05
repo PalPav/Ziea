@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/sprites/player/Gun_1.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/player/Gun_2.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://app/player/Player.gd" type="Script" id=6]
 [ext_resource path="res://app/weapons/Handgun.tscn" type="PackedScene" id=7]
 [ext_resource path="res://app/weapons/Shotgun.tscn" type="PackedScene" id=8]
+[ext_resource path="res://app/gears/BioScanner.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 23.866
@@ -57,6 +58,7 @@ playing = true
 [node name="Direction" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "Idle"
+frame = 1
 playing = true
 offset = Vector2( 65, -0.5 )
 
@@ -70,6 +72,10 @@ offset = Vector2( 65, -0.5 )
 "persist",
 ] instance=ExtResource( 8 )]
 visible = false
+
+[node name="Gears" type="Node2D" parent="."]
+
+[node name="BioScanner" parent="Gears" instance=ExtResource( 9 )]
 
 [node name="WeaponChangeTimer" type="Timer" parent="."]
 wait_time = 1.1

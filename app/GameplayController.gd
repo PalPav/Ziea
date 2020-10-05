@@ -21,7 +21,7 @@ func _ready():
 		return
 		
 	if !next_level:
-		next_level = load("res://app/levels/Level_005.tscn")
+		next_level = load("res://app/levels/Level_001.tscn")
 	loadNextLevel()
 	
 func onPlayerDeath():

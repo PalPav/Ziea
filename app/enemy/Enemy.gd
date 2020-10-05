@@ -14,6 +14,7 @@ onready var hit_sound = $SFX_Hit
 onready var detect_sound = $SFX_Detect
 onready var player_detector_ray = $PlayerDetectorRay
 onready var hit_effect = $HitEffect
+onready var sprite_alive = $Alive
 
 func _ready():
 	$HitEffect.show()
@@ -60,7 +61,7 @@ func detect_player():
 		
 	is_player_detected = true
 	$AttackZone/AttackZoneShape.set_deferred("disabled", false)
-	$Alive.set_deferred("visible", true)
+	showAlive()
 	detect_sound.play()
 	$Collider.set_deferred("disabled", false)
 	$PlayerDetectionTimer.queue_free()
@@ -72,7 +73,7 @@ func die():
 	
 	self.is_alive = false
 	death_sound.play()
-	$Alive.hide()
+	hideAlive()
 	$Dead.show()
 	$Collider.set_deferred("disabled", true)
 	$AttackZone/AttackZoneShape.disabled = true
@@ -84,3 +85,8 @@ func _on_AttackZone_body_entered(body):
 	if body.get_name() == 'Player' && body.has_method('take_hit'):
 		body.take_hit(self.damage)
 		
+func showAlive():
+	sprite_alive.show()
+	
+func hideAlive():
+	sprite_alive.hide()

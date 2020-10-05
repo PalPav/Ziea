@@ -79,7 +79,7 @@ visible = false
 position = Vector2( -0.0596008, 0.127693 )
 shape = SubResource( 4 )
 
-[node name="DoorSound" type="AudioStreamPlayer" parent="."]
+[node name="DoorSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 15 )
 volume_db = -20.0
 [connection signal="body_entered" from="." to="." method="_on_Door_body_entered"]
