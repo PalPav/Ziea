@@ -2,7 +2,7 @@
 
 [ext_resource path="res://app/items/ammo/AmmoItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://app/items/ammo/HandgunAmmo.gd" type="Script" id=2]
-[ext_resource path="res://assets/sounds/items/handgun_ammo.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sounds/items/shark_hand_hun.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sprites/items/handgun_ammo.png" type="Texture" id=4]
 
 [node name="HandgunAmmo" instance=ExtResource( 1 )]

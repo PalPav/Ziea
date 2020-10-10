@@ -27,10 +27,10 @@ func scanArea():
 			enemy.hideAlive()
 		
 
-func enable():
+func enableGear():
 	timer_scan.start()
 	
-func disable():
+func disableGear():
 	timer_scan.stop()
 	
 	var enemies = get_tree().get_nodes_in_group('enemies')

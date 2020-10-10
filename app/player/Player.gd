@@ -13,6 +13,7 @@ var velocity = Vector2.ZERO
 var rotation_dir = 0
 
 onready var weapons 			= $Weapons
+onready var gears				= $Gears
 onready var weapon_change_timer = $WeaponChangeTimer
 onready var sfx_weapon_swap 	= $SFX_WeaponSwap
 
@@ -56,6 +57,7 @@ func _physics_process(delta):
 	rotation += rotation_dir * rotation_speed * delta
 	velocity = move_and_slide(velocity)
 	
+### WEAPON REGION BEGIN ###
 func shoot():
 	var weapon = getCurrnetWeapon()
 	if (weapon.has_method('shoot')):
@@ -76,11 +78,14 @@ func getWeaponState()->Dictionary:
 		"in_bandolier":1
 	}
 
+func getWeapons():
+	return weapons
+
 func getCurrnetWeapon():
 	return weapons.get_child(0)
 	
 func changeCurrentWeapon():
-	if (is_changing_weapon):
+	if (is_changing_weapon || !getCurrnetWeapon().is_ammo_ready):
 		return
 
 	var weapons_pool_count = weapons.get_child_count()
@@ -104,6 +109,8 @@ func onWeaponChangeTimeout():
 	current_weapon.show()
 	EventBus.emit_signal("weapon_changed",current_weapon.getWeaponState())
 	
+### WEAPON REGION END ###
+
 func take_hit(incoming_damage):
 	current_health -= int(incoming_damage)
 	if current_health <= 0:
@@ -130,9 +137,6 @@ func resurect():
 	$Body.play()
 	if (current_health <= 0):
 		current_health = max_health
-
-func getWeapons():
-	return weapons
 	
 func saveState(save_data: Dictionary):
 	save_data["player"] = {
@@ -145,3 +149,9 @@ func loadState(load_data:Dictionary):
 	resurect()
 	EventBus.emit_signal("weapon_changed",getCurrnetWeapon().getWeaponState())
 	
+### GEAR REGION BEGIN ###
+func getGears():
+	return gears
+### GEAR REGION END ###
+
+

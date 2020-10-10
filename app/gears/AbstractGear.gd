@@ -20,7 +20,8 @@ func enableGear():
 	pass
 
 func addCharge(charge_amount):
-	timer_battery.wait_time += charge_amount
+	timer_battery.wait_time = charge_amount
 	
 	if !is_enabled:
+		timer_battery.start()
 		enableGear()

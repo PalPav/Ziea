@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://app/levels/AbstractLevel.gd" type="Script" id=1]
+[ext_resource path="res://assets/sounds/game/shark_stage_clear.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/sprites/level/Exit_4.png" type="Texture" id=3]
-[ext_resource path="res://assets/sounds/game/stage_clear_nitka.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sprites/level/Exit_locked.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/level/Exit_1.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/level/Exit_2.png" type="Texture" id=7]
@@ -15,15 +15,15 @@ extents = Vector2( 45, 45 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "no_way",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "welcome",
 "speed": 2.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "no_way",
+"speed": 1.0
 } ]
 
 [node name="AbstractLevel" type="Node"]
@@ -57,5 +57,5 @@ animation = "no_way"
 playing = true
 
 [node name="SFX_StageClear" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 2 )
 [connection signal="body_entered" from="Exit" to="." method="_on_Exit_body_entered"]

@@ -1,2 +1,0 @@
-extends AbstractItem
-class_name BonusItem

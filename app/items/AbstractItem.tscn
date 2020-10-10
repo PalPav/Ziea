@@ -14,10 +14,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Icon" type="Sprite" parent="." groups=[
-"items",
-"player_ref_related",
-]]
+[node name="Icon" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="PickUpRange" type="CollisionShape2D" parent="."]

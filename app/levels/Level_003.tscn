@@ -14,15 +14,12 @@ tile_data = PoolIntArray( -196613, 0, 0, -196612, 0, 0, -196611, 0, 0, -196610, 
 
 [node name="HandgunAmmo2" parent="Items" index="0" instance=ExtResource( 4 )]
 position = Vector2( 444.802, 949.245 )
-input_pickable = false
 
 [node name="HandgunAmmo3" parent="Items" index="1" instance=ExtResource( 4 )]
-position = Vector2( 1250.9, 950.601 )
-input_pickable = false
+position = Vector2( 50.1493, -54.3801 )
 
 [node name="ShotgunAmmo" parent="Items" index="2" instance=ExtResource( 2 )]
 position = Vector2( -344.831, 1154.77 )
-input_pickable = false
 
 [node name="Enemy_001" parent="Enemies" index="0" instance=ExtResource( 1 )]
 position = Vector2( -345.081, 549.528 )
