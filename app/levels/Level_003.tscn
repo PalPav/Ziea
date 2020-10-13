@@ -21,6 +21,9 @@ position = Vector2( 50.1493, -54.3801 )
 [node name="ShotgunAmmo" parent="Items" index="2" instance=ExtResource( 2 )]
 position = Vector2( -344.831, 1154.77 )
 
+[node name="HandgunAmmo" parent="Items" index="3" instance=ExtResource( 4 )]
+position = Vector2( 1247.42, 952.878 )
+
 [node name="Enemy_001" parent="Enemies" index="0" instance=ExtResource( 1 )]
 position = Vector2( -345.081, 549.528 )
 
@@ -80,3 +83,6 @@ position = Vector2( -349.838, -257.889 )
 
 [node name="Enemy_004" parent="Enemies" index="19" instance=ExtResource( 1 )]
 position = Vector2( 446.931, 48.9261 )
+
+[node name="Animation" parent="Exit" index="1"]
+frame = 1

@@ -8,6 +8,10 @@ onready var sfx_disabled = $SFX_Disabled
 var is_enabled = false
 var full_charge_time = 100
 
+func _ready():
+	# warning-ignore:return_value_discarded
+	EventBus.connect("player_dead",self, "disableGear")
+
 func onBatteryDischarged():
 	sfx_disabled.play()
 	is_enabled = false
