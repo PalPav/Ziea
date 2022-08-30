@@ -26,16 +26,18 @@ func _ready():
 		activateExit()
 	yield(get_tree(),"idle_frame")
 	EventBus.emit_signal("level_ready")
+
 func initActiveZones()->void:
 	spawnDoors()
-	
 	setLevelExit()
+	
 func setLevelExit()->void:
 	var points = level_map.get_used_cells_by_id(LEVEL_EXIT_TILE_ID)
 	if points.size():
 		level_exit.set_position(getPositionFromTile(points.front()))
 	else:
 		push_error('Level have no exit tile')
+
 func spawnDoors()->void:
 	for door_coorinates in level_map.get_used_cells_by_id(DOOR_TILE_HORIZONTAL_ID):
 		spawnDoor(door_coorinates)
@@ -56,6 +58,7 @@ func getPlayerSpawnPosition()->Vector2:
 	else:
 		push_error('Level have no player spawn tile')
 	return(Vector2(0,0))
+
 func activateExit():
 	yield(get_tree().create_timer(1),"timeout")
 	is_stage_clear = true
@@ -63,10 +66,9 @@ func activateExit():
 	$Exit/Animation.play("welcome")	
 
 func onEnemyDeath():
-	
 	if $Enemies.getAliveCount() < 1:
 		activateExit()
-		
+
 func _on_Exit_body_entered(body):
 	if (is_stage_clear && body.is_in_group(PLAYERS_GROUP)):
 		EventBus.emit_signal("stage_cleared")

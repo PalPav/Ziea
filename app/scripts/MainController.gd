@@ -72,3 +72,7 @@ func loadGame():
 		node.loadState(load_data)
 
 	save_game.close()
+
+func showCredits():
+	# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://app/credits/Credits.tscn")

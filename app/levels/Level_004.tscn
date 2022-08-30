@@ -51,7 +51,6 @@ position = Vector2( 1341.28, 1146.65 )
 
 [node name="BioScannerItem" parent="Items" index="12" instance=ExtResource( 6 )]
 position = Vector2( 351.731, 145.971 )
-input_pickable = false
 
 [node name="Enemy" parent="Enemies" index="0" instance=ExtResource( 2 )]
 position = Vector2( 749.07, 547.344 )
@@ -178,6 +177,3 @@ position = Vector2( 1130.83, 304.403 )
 
 [node name="Enemy11" parent="Enemies" index="41" instance=ExtResource( 2 )]
 position = Vector2( 1133.5, 421.869 )
-
-[node name="Animation" parent="Exit" index="1"]
-frame = 1

@@ -74,8 +74,7 @@ shape = SubResource( 2 )
 [node name="DoorAnimation" type="AnimationPlayer" parent="."]
 anims/FlapOpen = SubResource( 3 )
 
-[node name="ProximityDetector" type="CollisionShape2D" parent="."]
-visible = false
+[node name="ProximityDetectorShape" type="CollisionShape2D" parent="."]
 position = Vector2( -0.0596008, 0.127693 )
 shape = SubResource( 4 )
 
